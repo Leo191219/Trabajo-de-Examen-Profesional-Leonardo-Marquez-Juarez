@@ -1,1 +1,44 @@
+pip install yfinance pandas numpy scikit-learn hmmlearn matplotlib seaborn networkx
 
+from hmmlearn.hmm import GaussianHMM
+import math
+import matplotlib.pyplot as plt
+import networkx as nx
+import numpy as np
+import os
+import pandas as pd
+import seaborn as sns
+from sklearn.ensemble import RandomForestRegressor, RandomForestClassifier
+from sklearn.metrics import classification_report, accuracy_score, mean_squared_error, confusion_matrix
+from sklearn.model_selection import train_test_split
+from sklearn.model_selection import GridSearchCV, TimeSeriesSplit
+from sklearn.preprocessing import StandardScaler
+from sklearn.svm import SVR, SVC
+from sklearn.tree import DecisionTreeRegressor
+from statsmodels.tsa.stattools import adfuller
+import time
+import warnings
+import yfinance as yf
+
+# Set seed for reproducibility
+np.random.seed(42)
+
+# 1. Generate the 'True Signal' (e.g., a slow, structural market trend)
+days = np.arange(200)
+true_signal = np.sin(days / 20) * 2 + (days / 50)
+
+# 2. Generate the 'Market Noise' (High variance stochasticity)
+market_noise = np.random.normal(loc=0, scale=1.5, size=200)
+
+# 3. Combine to create the 'Observable Market Price'
+observable_price = true_signal + market_noise
+
+# Plotting the challenge outlined in Section 1.1
+plt.figure(figsize=(10, 5))
+plt.plot(days, observable_price, label='Observable Market Data (Signal + Noise)', color='lightgray')
+plt.plot(days, true_signal, label='Hidden Structural Signal', color='blue', linewidth=2)
+plt.xlabel('Time (Days)')
+plt.ylabel('Asset Price')
+plt.legend()
+plt.grid(True, alpha=0.3)
+plt.show()
