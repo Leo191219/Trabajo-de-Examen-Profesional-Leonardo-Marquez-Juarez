@@ -23,3 +23,15 @@ El pipeline se divide en tres etapas ejecutadas secuencialmente:
 │   ├── features.py     # Ingeniería de características (RSI, Medias Móviles)
 │   └── pipeline.py     # Clase principal HierarchicalBaseModel4
 └── README.md
+```
+## 🚀 Ejecución Interactiva
+
+El pipeline cuantitativo completo (extracción de datos, entrenamiento del modelo HMM/SVC y backtesting financiero) está consolidado en un único cuaderno para facilitar su evaluación. 
+
+Puedes ejecutar el código en la nube sin necesidad de instalar librerías locales haciendo clic aquí:
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1kRt_9eN-Iw1ZVM7q65AxZpF_McWBxPSP)
+
+*(Nota para el sínodo: El cuaderno está configurado en modo lectura. Al abrirlo, Colab creará una copia temporal en su entorno para que pueda ejecutar las celdas libremente).*
+
+*(Nota para el evaluador: El código solicitará acceso a Google Drive en la primera ejecución exclusivamente para crear y almacenar en caché el archivo `.csv` con la serie de tiempo financiera, garantizando el determinismo en ejecuciones futuras).*
